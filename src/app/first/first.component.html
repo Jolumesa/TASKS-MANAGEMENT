@@ -1,0 +1,51 @@
+
+
+<h1 class="xx" style="padding: 14px; margin-bottom: 47px;" >To-do list <img style="padding-left: 20px;" src="img/download.jpeg" width="70px" height="50px"></h1>
+
+
+
+<form #form="ngForm" (ngSubmit)="onSubmit()" class="ll">
+<label style="margin-right: 5px;"></label>
+<input name="newTask" id="ww" placeholder="Add Task" [(ngModel)]="newValue" style="background-color: blanchedalmond; color: black;"/>
+<button class="btn btn-dark">Submit</button>
+
+<p class="text text-light">{{status}}</p>
+
+</form>
+<form #form="ngForm" (ngSubmit)="onFind()" class="ll">
+    <label style="margin-right: 5px;"></label>
+    <input name="newTask" id="ww" placeholder="Find Task" [(ngModel)]="searchValue" style="background-color: blanchedalmond; color: black;"/>
+    <button class="btn btn-dark">Search</button>
+    </form>
+
+@if(foundValue){
+    <h3 style="text-align: center; margin-bottom: 35px;">{{foundValue}}</h3>
+}
+
+
+
+<button (click)="showAll()" type="button" class="btn btn-dark" style="margin-left: 35px;">Show all tasks</button>
+<button (click)="showPending()" type="button" class="btn btn-dark" style="margin-left: 35px;">Show pending tasks</button>
+<button (click)="showComplete()" type="button" class="btn btn-dark" style="margin-left: 35px;">Show completed tasks</button>
+
+
+
+
+<div class="card" style="width: 18rem; margin-top: 35px; margin-bottom: 40px;">
+    <ul class="list-group list-group-flush">
+        @if(boolean){
+            @for (task of localeTasks; track task) {
+                <li class="list-group-item"  >{{task}} <button (click)="showDropdownMenu()" style="margin-left:25px;" type="button" class="btn btn-secondary btn-sm">Mark task as</button></li>
+
+                @if(showDropDown){
+                    <ul class="list-group">
+                        <li (click)="addCompleted()" class="list-group-item active">Completed</li>
+                        <li (click)="addPending()" class="list-group-item">Pending</li>
+                        
+                      </ul>
+                }
+            }
+            }
+    </ul>
+  </div>
+ 

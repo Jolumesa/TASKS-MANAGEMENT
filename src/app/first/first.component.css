@@ -1,0 +1,30 @@
+.xx {
+text-align: center;
+font-size: 40px;
+background-color: rgb(91, 91, 77);
+}
+
+.vv {
+    text-align: center;
+    margin-left: 24px;
+    background-color: rgb(67, 46, 163);
+    font-family: cursive
+}
+
+.ll {
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.task {
+    
+background-color: rgb(143, 59, 46);
+font-family: cursive;
+margin-top: 35px;
+max-width: 35%;
+text-align: center;
+
+}
+
+p {
+    font-family: cursive;}
