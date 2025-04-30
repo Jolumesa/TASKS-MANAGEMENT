@@ -1,30 +1,38 @@
-.xx {
+
+.header {
 text-align: center;
 font-size: 40px;
-background-color: rgb(91, 91, 77);
+background-color: rgb(4, 4, 0);
 }
 
-.vv {
-    text-align: center;
-    margin-left: 24px;
-    background-color: rgb(67, 46, 163);
-    font-family: cursive
-}
 
-.ll {
+
+.add {
     margin-bottom: 50px;
     text-align: center;
 }
 
-.task {
-    
-background-color: rgb(143, 59, 46);
-font-family: cursive;
-margin-top: 35px;
-max-width: 35%;
-text-align: center;
 
-}
 
 p {
     font-family: cursive;}
+
+
+
+.my-button {
+   
+font-size: 11px;
+padding: 2px;
+  margin-left: 10px;
+  background-color: #8a1818;
+  color: white;
+  border: none; 
+  border-radius: 30px;
+  cursor: pointer;
+}
+.my-button:hover {
+  background-color: #f73333;
+}
+.my-button:active {
+  background-color: #f89797;
+}
