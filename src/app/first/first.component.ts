@@ -72,6 +72,7 @@ ngOnInit() {
 
   deleteTask(selectedTask: string) {
     console.log('Delete Task');
+    
     window.localStorage.removeItem(selectedTask);
     this.allStorage = this.allStorage.filter((x) => x !== selectedTask);
   }
@@ -82,6 +83,7 @@ ngOnInit() {
   }
 
   deleteAllTasks() {
+    if(window.confirm('This action will remove all your tasks permanently. Do you want to continue?')) {
     console.log('Delete All Tasks');
     window.localStorage.clear();
     this.allStorage = [];
@@ -89,8 +91,9 @@ ngOnInit() {
     this.pendingTasks = [];
     this.tempMessage = 'All tasks deleted!';
 
-    setTimeout(() => {
-      this.tempMessage = '';
-    }, 3000);
+      setTimeout(() => {
+        this.tempMessage = '';
+      }, 3000);
+    }
   }
 }

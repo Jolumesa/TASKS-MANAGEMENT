@@ -10,5 +10,5 @@ import { FirstComponent } from "./first/first.component";
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'lets-play';
+  title = 'TASKS MANAGEMENT';
 }
