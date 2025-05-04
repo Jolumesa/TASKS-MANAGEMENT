@@ -30,6 +30,30 @@ padding: 2px;
   border-radius: 30px;
   cursor: pointer;
 }
+
+.my-button-completed {
+   
+    font-size: 11px;
+    padding: 2px;
+      margin-left: 10px;
+      background-color: #2d9912;
+      color: white;
+      border: none; 
+      border-radius: 30px;
+      cursor: pointer;
+    }
+    .my-button-pending {
+   
+        font-size: 11px;
+        padding: 2px;
+          margin-left: 10px;
+          background-color: #919082;
+          color: white;
+          border: none; 
+          border-radius: 30px;
+          cursor: pointer;
+        }
+
 .my-button:hover {
   background-color: #f73333;
 }
