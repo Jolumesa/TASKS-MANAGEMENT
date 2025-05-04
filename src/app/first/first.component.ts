@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import {
  
   FormsModule,
@@ -12,49 +12,53 @@ import {
   templateUrl: './first.component.html',
   styleUrl: './first.component.css',
 })
-export class FirstComponent {
+export class FirstComponent implements OnInit {
  
   completedTasks: string[] = [];
   pendingTasks: string[] = [];
-
+  allStorage: string[] = [];
   taskCompleted = false;
-
+  showAllTasks = false;
   newValue = '';
   searchValue = '';
   foundValue = '';
+  tempMessage = '';
 
-  submitted = '';
-
- markPending() {
-    
-  }
+ngOnInit() {
+  let x = 0;
+  for (x; x < window.localStorage.length; x++) {if(!this.allStorage.includes(window.localStorage.key(x)!))
+    this.allStorage.push(window.localStorage.key(x)!);
+  };
+}
 
   onSubmit() {
     console.log('Submitted!');
-
+    if (this.allStorage.includes(this.newValue)) {
+     
+    this.tempMessage = 'ERROR: Task already exists!';
+    setTimeout(() => {
+      this.tempMessage = '';
+    }, 3000);
+  } else {
+    this.tempMessage = 'Successfully Submitted!';
+    setTimeout(() => {
+      this.tempMessage = '';
+    }, 3000);
+  }
     window.localStorage.setItem(
       this.newValue,
       JSON.stringify({ value: this.newValue, status: 'Pending'})
     );
-    this.allStorage.push(this.newValue);
-    this.submitted = 'Successfully Submitted!';
-    setTimeout(() => {
-      this.submitted = '';
-    }, 3000);
-  }
-
-
-
-  allStorage: string[] = [];
-
-  showAll = () => {
-    console.log('SHOW ALL');
-
     let x = 0;
-    for (x; x < window.localStorage.length; x++) {
-      this.allStorage.push(window.localStorage.key(x)!);
-    }
-    console.log(this.allStorage);
+    for (x; x < window.localStorage.length; x++) {if(!this.allStorage.includes(window.localStorage.key(x)!)){
+      this.allStorage.push(window.localStorage.key(x)!);}
+    };
+ 
+};
+
+  showAll()  {
+  this.showAllTasks = !this.showAllTasks;
+    
   };
 
   showPending() {
@@ -83,10 +87,10 @@ export class FirstComponent {
     this.allStorage = [];
     this.completedTasks = [];
     this.pendingTasks = [];
-    this.submitted = 'All tasks deleted!';
+    this.tempMessage = 'All tasks deleted!';
 
     setTimeout(() => {
-      this.submitted = '';
+      this.tempMessage = '';
     }, 3000);
   }
 }
