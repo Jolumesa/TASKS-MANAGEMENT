@@ -24,18 +24,29 @@
     />
     <button class="btn btn-dark">Submit</button>
   
-    <p class="text text-light">{{ submitted }}</p>
+    <p class="text text-light">{{ tempMessage }}</p>
   </form>
 
-
+@if(showAllTasks){
 <button
   (click)="showAll()"
   type="button"
-  class="btn btn-dark"
+  class="btn btn-light"
   style="margin-left: 35px"
 >
-  Show all tasks
-</button>
+  Hide all tasks
+</button>}
+
+@if(!showAllTasks){
+  <button
+    (click)="showAll()"
+    type="button"
+    class="btn btn-dark"
+    style="margin-left: 35px"
+  >
+    Show all tasks
+  </button>}
+
 <button
   (click)="showPending()"
   type="button"
@@ -61,6 +72,7 @@
   Delete all tasks
 </button>
 </div>
+@if(showAllTasks) {
 @for (task of allStorage; track task) {
 
 <h3 style="text-align: center; margin-top: 80px; ">{{ task }}</h3>
@@ -77,7 +89,7 @@
  
 </div>}
 
-
+}
 
 
 
