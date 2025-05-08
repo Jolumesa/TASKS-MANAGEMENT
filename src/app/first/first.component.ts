@@ -117,6 +117,7 @@ ngOnInit() {
     for (x; x < window.localStorage.length; x++) {if(!this.allStorage.includes(window.localStorage.key(x)!)){
       this.allStorage.push(window.localStorage.key(x)!);}
     };
+    this.pendingTasks.push(this.newValue);
     this.statusAll = [...this.statusPending, ...this.statusCompleted]
  
 };
