@@ -129,11 +129,7 @@ ngOnInit() {
     this.showAllTasks = !this.showAllTasks;
     this.showPendingTasks = false
   this.showCompletedTasks = false;
-  // for(let i = 0; i < window.localStorage.length; i++) {
-  //   let x = JSON.parse( window.localStorage.getItem(window.localStorage.key(i)!)!)
-    
-  //     this.allStorage.push(x.value)
-  //   }
+ 
   
   };
 
