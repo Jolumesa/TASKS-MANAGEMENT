@@ -7,11 +7,12 @@
   />
 </h2>
 
+
 <div  style="text-align: center">
   
   <p style="color: white; font-size: 20px">Total tasks: {{ allStorage.length }}</p>
-  <p style="color: white; font-size: 20px">Pending tasks: {{ pendingTasks }}</p>
-  <p style="color: white; font-size: 20px">Completed tasks: {{ completedTasks }}</p>
+  <p style="color: white; font-size: 20px">Pending tasks: {{ pendingTasks.length }}</p>
+  <p style="color: white; font-size: 20px">Completed tasks: {{ completedTasks.length }}</p>
 
   <form (ngSubmit)="onSubmit()" class="add">
     <label style="margin-top: 60px; margin-right: 5px; "></label>
@@ -22,21 +23,17 @@
       [(ngModel)]="newValue"
       style="background-color: rgb(255, 255, 255); color: black"
     />
-    <button class="btn btn-dark">Submit</button>
-  
+    @if(!submit){
+    <button class="btn btn-dark" >Submit</button>
+    }
+    @if(submit){
+    <button class="btn btn-light" >Submit</button>
+    }
+
+
     <p class="text text-light">{{ tempMessage }}</p>
   </form>
 
-
-@if(showAllTasks){
-<button
-  (click)="showAll()"
-  type="button"
-  class="btn btn-light"
-  style="margin-left: 35px"
->
-  Hide all tasks
-</button>}
 
 @if(!showAllTasks){
   <button
@@ -47,23 +44,59 @@
   >
     Show all tasks
   </button>}
+  @if(showAllTasks){
+    <button
+      (click)="showAll()"
+      type="button"
+      class="btn btn-light"
+      style="margin-left: 35px"
+    >
+      Show all tasks
+    </button>}
 
+
+@if(!showPendingTasks){
 <button
   (click)="showPending()"
   type="button"
   class="btn btn-dark"
   style="margin-left: 35px"
+  >
+  Show pending tasks
+</button>}
+@if(showPendingTasks){
+  <button
+  (click)="showPending()"
+  type="button"
+  class="btn btn-light"
+  style="margin-left: 35px"
 >
   Show pending tasks
 </button>
+}
+
+@if(!showCompletedTasks){
 <button
-  (click)="showComplete()"
+  (click)="showCompleted()"
   type="button"
   class="btn btn-dark"
   style="margin-left: 35px"
 >
   Show completed tasks
-</button>
+</button>}
+@if(showCompletedTasks) {
+  <button
+    (click)="showCompleted()"
+    type="button"
+    class="btn btn-light"
+    style="margin-left: 35px"
+  >
+    Show completed tasks
+  </button>
+}
+
+
+@if(!deleteAll) {
 <button
   (click)="deleteAllTasks()"
   type="button"
@@ -72,29 +105,78 @@
 >
   Delete all tasks
 </button>
-</div>
+}
+@if(deleteAll) {
+  <button
+    (click)="deleteAllTasks()"
+    type="button"
+    class="btn btn-light"
+    style="margin-left: 35px"
+  >
+    Delete all tasks
+  </button>
+  }
+
+
 @if(showAllTasks) {
-@for (task of allStorage; track task) {
+@for (task of statusAll; track task) {
 
-<h3 style="text-align: center; margin-top: 80px; ">{{ task }}</h3>
 
-<div style="text-align: center; ">
-  <button class="my-button"  (click)="deleteTask(task)">Delete Task</button>
-  @if(taskCompleted) {
-    <button class="my-button-completed"  (click)="markSatus(task)">Completed</button>
-  } 
-  @if(!taskCompleted) {
-    <button class="my-button-pending"  (click)="markSatus(task)">Pending</button>
-  } 
+@if(task.status == 'Completed'){
   
- 
-</div>}
-
+  <h3 style="text-align: center; margin-top: 80px; ">{{ task.value }}</h3>
+  <p>STATUS: Completed</p>
+<div style="text-align: center; ">
+  <button class="my-button-delete"  (click)="deleteTask(task.value)">Delete Task</button>
+  <button class="my-button-change-status"  (click)="markPending(task.value)">Change status</button>
+</div>
 }
 
 
+  @if(task.status == 'Pending'){
+    <h3 style="text-align: center; margin-top: 80px; ">{{ task.value }}</h3>
+    <p>STATUS: Pending</p>
+  <div style="text-align: center; ">
+    <button class="my-button-delete"  (click)="deleteTask(task.value)">Delete Task</button>
+    <button class="my-button-change-status"  (click)="markCompleted(task.value)">Change status</button>
+  </div>
+  }
+}
+  }
+
+      
+
+   
+@if(showPendingTasks) {
+  @for (task of statusPending; track task.value) {
+  
+  <h3 style="text-align: center; margin-top: 80px; ">{{ task.value }}</h3>
+  <p>STATUS: Pending</p>
+  <div style="text-align: center; ">
+    <button class="my-button-delete"  (click)="deleteTask(task.value)">Delete Task</button>
+  
+    <button class="my-button-change-status"  (click)="markCompleted(task.value)">Change status</button>
+  </div>}
+  }
 
 
 
+  @if(showCompletedTasks) {
+    @for (task of statusCompleted; track task.value) {
+    
+    <h3 style="text-align: center; margin-top: 80px; ">{{ task.value }}</h3>
+    <p>STATUS: Completed</p>
+    <div style="text-align: center; ">
+      <button class="my-button-delete"  (click)="deleteTask(task.value)">Delete Task</button>
+    
+      
+      <button class="my-button-change-status"  (click)="markPending(task.value)">Change status</button>
+      
+    </div>}
+    }
 
 
+
+    
+   
+    
