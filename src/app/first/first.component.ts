@@ -60,7 +60,7 @@ ngOnInit() {
   let x = 0;
   for (x; x < window.localStorage.length; x++) {if(!this.allStorage.includes(window.localStorage.key(x)!)){
     this.allStorage.push(window.localStorage.key(x)!);
-    this.statusAll.push(JSON.parse(window.localStorage.getItem(window.localStorage.key(x)!)!))
+    
   };}
 
   for (let i = 0; i < window.localStorage.length; i++) {
@@ -112,7 +112,7 @@ ngOnInit() {
   }
     window.localStorage.setItem(
       this.newValue(),
-      JSON.stringify({ value: this.newValue, status: 'Pending'})
+      JSON.stringify({ value: this.newValue(), status: 'Pending'})
     );
     this.statusPending.push({ value: this.newValue(), status: 'Pending'})
     let x = 0;
