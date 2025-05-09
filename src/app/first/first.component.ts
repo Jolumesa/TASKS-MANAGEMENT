@@ -60,6 +60,7 @@ ngOnInit() {
   let x = 0;
   for (x; x < window.localStorage.length; x++) {if(!this.allStorage.includes(window.localStorage.key(x)!)){
     this.allStorage.push(window.localStorage.key(x)!);
+    this.statusAll.push(JSON.parse(window.localStorage.getItem(window.localStorage.key(x)!)!))
   };}
 
   for (let i = 0; i < window.localStorage.length; i++) {
