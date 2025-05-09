@@ -24,7 +24,7 @@ export class FirstComponent implements OnInit {
   showAllTasks = false;
   deleteAll = false
   submit = false;
-  newValue = '';
+  newValue = signal('');
   tempMessage = '';
 
   showPendingTasks = false; 
@@ -85,7 +85,7 @@ ngOnInit() {
 }
 
   onSubmit() {
-    if(this.newValue == '') {
+    if(this.newValue() == '') {
       this.tempMessage = 'ERROR: Task cannot be empty!';
       setTimeout(() => {
         this.tempMessage = '';
@@ -96,7 +96,7 @@ ngOnInit() {
     setTimeout(() => {
       this.submit = false;}, 200);
 
-    if (this.allStorage.includes(this.newValue)) {
+    if (this.allStorage.includes(this.newValue())) {
      
     this.tempMessage = 'ERROR: Task already exists!';
     setTimeout(() => {
@@ -110,16 +110,17 @@ ngOnInit() {
     }, 3000);
   }
     window.localStorage.setItem(
-      this.newValue,
+      this.newValue(),
       JSON.stringify({ value: this.newValue, status: 'Pending'})
     );
-    this.statusPending.push({ value: this.newValue, status: 'Pending'})
+    this.statusPending.push({ value: this.newValue(), status: 'Pending'})
     let x = 0;
     for (x; x < window.localStorage.length; x++) {if(!this.allStorage.includes(window.localStorage.key(x)!)){
       this.allStorage.push(window.localStorage.key(x)!);}
     };
     
     this.statusAll = [...this.statusPending, ...this.statusCompleted]
+    this.newValue.set('');
 };
 
 
