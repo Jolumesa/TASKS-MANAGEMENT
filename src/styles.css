@@ -1,14 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
 
-body {
-    background-color: rgb(33, 37, 41);
-}
-
-/* body {
-    background-image: url('https://img.freepik.com/free-photo/grunge-black-concrete-textured-background_53876-124541.jpg?semt=ais_hybrid&w=740');
-} */
 
 body {
     background-image: url('https://images.alphacoders.com/545/thumb-1920-545752.jpg');
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
