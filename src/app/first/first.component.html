@@ -1,4 +1,4 @@
-<h2 class="header" style="padding: 30px; margin-bottom: 47px; font-family:c, 'Times New Roman', Times, serif; " >
+<h2 class="header" style="padding: 2.2rem; margin-bottom: 2rem; font-family:c, 'Times New Roman', Times, serif; " >
   TASKS MANAGEMENT<img
     style="padding-left: 20px"
     src="img/silver-check.jpg"
@@ -16,50 +16,51 @@
   <p style="color: white; font-size: 20px">Completed tasks: {{ statusCompleted.length }}</p>
 
   <form (ngSubmit)="onSubmit()" class="add">
-    <label style="margin-top: 60px; "></label>
+    <label style="margin-top: 40px; "></label>
     <input
       name="newTask"
       id="newTask"
       placeholder="Add task name"
       [(ngModel)]="newValue"
-      style="background-color: rgb(255, 255, 255); color: black"
+      style="background-color: rgb(255, 255, 255); color: black; margin-bottom: 0.35rem; width: 20rem;"
     />
-    @if(!submit){
-    <button class="btn btn-dark" >Submit</button>
-    }
-    @if(submit){
-    <button class="btn btn-light" >Submit</button>
-    }
+    
 
 
  <div>
   <textarea id="taskComment" placeholder="Add task details" name="textarea-name" [(ngModel)]="newComment">frv</textarea>
 </div>
-
+@if(!submit){
+    <button class="btn btn-dark" style="width: 20rem;">Submit</button>
+    }
+    @if(submit){
+    <button class="btn btn-light" >Submit</button>
+    }
 <p class="text text-light">{{ tempMessage }}</p>
 
   </form>
 
  
 
-@if(!showAllTasks){
+ @if(!showAllTasks){
   <button
     (click)="showAll()"
     type="button"
     class="btn btn-dark"
-    style="margin-left: 35px; margin-bottom: 20px"
+    style=" margin-bottom: 20px; width: 8.5rem; margin-right: 0.1rem;"
   >
-    Show all tasks
+    Show all 
   </button>}
   @if(showAllTasks){
     <button
       (click)="showAll()"
       type="button"
       class="btn btn-light"
-      style="margin-left: 35px; margin-bottom: 20px"
+      style=" margin-bottom: 20px; width: 8.5rem; margin-right: 0.1rem;"
     >
-      Show all tasks
+      Show all 
     </button>}
+
 
 
 @if(!showPendingTasks){
@@ -67,38 +68,39 @@
   (click)="showPending()"
   type="button"
   class="btn btn-dark"
-  style="margin-left: 35px; margin-bottom: 20px"
+  style=" margin-bottom: 20px; width: 8.5rem; margin-left: 0.1rem; margin-right: 0.1rem;"
   >
-  Show pending tasks
+  Show pending
 </button>}
 @if(showPendingTasks){
   <button
   (click)="showPending()"
   type="button"
   class="btn btn-light"
-  style="margin-left: 35px; margin-bottom: 20px"
+  style="margin-bottom: 20px; width: 8.5rem; margin-left: 0.1rem; margin-right: 0.1rem;"
 >
-  Show pending tasks
+  Show pending
 </button>
 }
+
 
 @if(!showCompletedTasks){
 <button
   (click)="showCompleted()"
   type="button"
   class="btn btn-dark"
-  style="margin-left: 35px; margin-bottom: 20px"
+  style="margin-bottom: 20px; width: 8.5rem; margin-left: 0.1rem; margin-right: 0.1rem;"
 >
-  Show completed tasks
+  Show complete
 </button>}
 @if(showCompletedTasks) {
   <button
     (click)="showCompleted()"
     type="button"
     class="btn btn-light"
-    style="margin-left: 35px; margin-bottom: 20px"
+    style=" margin-bottom: 20px; width: 8.5rem;margin-left: 0.1rem; margin-right: 0.1rem;"
   >
-    Show completed tasks
+    Show complete
   </button>
 }
 
@@ -108,9 +110,9 @@
   (click)="deleteAllTasks()"
   type="button"
   class="btn btn-dark"
-  style="margin-left: 35px; margin-bottom: 20px"
+  style=" margin-bottom: 20px; width: 8.5rem; margin-left: 0.1rem;"
 >
-  Delete all tasks
+  Delete all
 </button>
 }
 @if(deleteAll) {
@@ -118,9 +120,9 @@
     (click)="deleteAllTasks()"
     type="button"
     class="btn btn-light"
-    style="margin-left: 35px ; margin-bottom: 20px; "
+    style=" margin-bottom: 20px; width: 8.5rem; margin-left: 0.1rem; "
   >
-    Delete all tasks
+    Delete all
   </button>
   }
 
