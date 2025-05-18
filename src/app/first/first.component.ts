@@ -14,9 +14,9 @@ import {
 })
 export class FirstComponent implements OnInit {
  stringStatus: string = '';
- statusPending: {value: string, status: string}[] = [];
- statusCompleted: {value: string, status: string}[] = [];
- statusAll: {value: string, status: string}[] = [];
+ statusPending: {value: string, status: string, comment: string}[] = [];
+ statusCompleted: {value: string, status: string, comment: string}[] = [];
+ statusAll: {value: string, status: string, comment: string}[] = [];
   completedTasks: string[] = [];
   pendingTasks: string[] = [];
    allStorage: string[] = [];
@@ -25,6 +25,7 @@ export class FirstComponent implements OnInit {
   deleteAll = false
   submit = false;
   newValue = signal('');
+  newComment = signal('');
   tempMessage = '';
 
   showPendingTasks = false; 
@@ -112,9 +113,9 @@ ngOnInit() {
   }
     window.localStorage.setItem(
       this.newValue(),
-      JSON.stringify({ value: this.newValue(), status: 'Pending'})
+      JSON.stringify({ value: this.newValue(), status: 'Pending', comment: this.newComment() })
     );
-    this.statusPending.push({ value: this.newValue(), status: 'Pending'})
+    this.statusPending.push({ value: this.newValue(), status: 'Pending', comment: this.newComment() });
     let x = 0;
     for (x; x < window.localStorage.length; x++) {if(!this.allStorage.includes(window.localStorage.key(x)!)){
       this.allStorage.push(window.localStorage.key(x)!);}
@@ -122,6 +123,9 @@ ngOnInit() {
     
     this.statusAll = [...this.statusPending, ...this.statusCompleted]
     this.newValue.set('');
+    this.newComment.set('');
+
+    
 };
 
 
@@ -161,10 +165,11 @@ ngOnInit() {
 for(let i = 0; i < this.statusPending.length; i++) {
   if(this.statusPending[i].value == taskValue) {
     this.statusPending[i].status = 'Completed';
+    this.statusPending[i].comment = this.statusPending[i].comment;
 
     window.localStorage.setItem(this.statusPending[i].value, JSON.stringify(this.statusPending[i]));
     
-    this.statusCompleted.push({ value: taskValue, status: 'Completed'});
+    this.statusCompleted.push({ value: taskValue, status: 'Completed', comment: this.statusPending[i].comment});
     this.completedTasks.push(taskValue);
     this.pendingTasks = this.pendingTasks.filter((x) => x !== taskValue);
     this.statusPending = this.statusPending.filter((x) => x.value !== taskValue);
@@ -179,10 +184,11 @@ for(let i = 0; i < this.statusPending.length; i++) {
     for(let i = 0; i < this.statusCompleted.length; i++) {
       if(this.statusCompleted[i].value == taskValue) {
         this.statusCompleted[i].status = 'Pending';
+        this.statusCompleted[i].comment = this.statusCompleted[i].comment;
     
         window.localStorage.setItem(this.statusCompleted[i].value, JSON.stringify(this.statusCompleted[i]));
      
-      this.statusPending.push({ value: taskValue, status: 'Pending'});
+      this.statusPending.push({ value: taskValue, status: 'Pending', comment: this.statusCompleted[i].comment});
       this.pendingTasks.push(taskValue);
       this.completedTasks = this.completedTasks.filter((x) => x !== taskValue);
       this.statusCompleted = this.statusCompleted.filter((x) => x.value !== taskValue);

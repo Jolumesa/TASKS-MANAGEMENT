@@ -1,8 +1,14 @@
 
+textarea {
+  background-color: rgb(255, 255, 255); color: black; width: 17rem; height: 5rem;
+}
+
+
 .header {
 text-align: center;
 font-size: 40px;
 background-color: rgb(4, 4, 0);
+color: rgb(253, 255, 255);
 }
 
 
@@ -11,7 +17,6 @@ background-color: rgb(4, 4, 0);
     margin-bottom: 50px;
     text-align: center;
 }
-
 
 
 p {

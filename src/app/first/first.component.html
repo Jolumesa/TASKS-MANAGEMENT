@@ -16,11 +16,11 @@
   <p style="color: white; font-size: 20px">Completed tasks: {{ statusCompleted.length }}</p>
 
   <form (ngSubmit)="onSubmit()" class="add">
-    <label style="margin-top: 60px; margin-right: 5px; "></label>
+    <label style="margin-top: 60px; "></label>
     <input
       name="newTask"
-      id="ww"
-      placeholder="Add New Task"
+      id="newTask"
+      placeholder="Add task name"
       [(ngModel)]="newValue"
       style="background-color: rgb(255, 255, 255); color: black"
     />
@@ -31,10 +31,16 @@
     <button class="btn btn-light" >Submit</button>
     }
 
+<p class="text text-light">{{ tempMessage }}</p>
 
-    <p class="text text-light">{{ tempMessage }}</p>
+ <div>
+  <textarea id="taskComment" placeholder="Add task details" name="textarea-name" [(ngModel)]="newComment">frv</textarea>
+</div>
+
+
   </form>
 
+ 
 
 @if(!showAllTasks){
   <button
@@ -112,7 +118,7 @@
     (click)="deleteAllTasks()"
     type="button"
     class="btn btn-light"
-    style="margin-left: 35px ; margin-bottom: 20px"
+    style="margin-left: 35px ; margin-bottom: 20px; "
   >
     Delete all tasks
   </button>
@@ -125,7 +131,8 @@
 
 @if(task.status == 'Completed'){
   
-  <h3 style="text-align: center; margin-top: 80px; ">{{ task.value }}</h3>
+  <h2 style="text-align: center; margin-top: 80px; ">{{ task.value }}</h2>
+  <P style="text-align: center; ">TASK DETAILS: {{ task.comment }}</P>
   <p>STATUS: <span style="color: rgb(98, 167, 52);">Completed</span></p>
 <div style="text-align: center; ">
   <button class="my-button-delete"  (click)="deleteTask(task.value)">Delete Task</button>
@@ -135,7 +142,8 @@
 
 
   @if(task.status == 'Pending'){
-    <h3 style="text-align: center; margin-top: 80px; ">{{ task.value }}</h3>
+    <h2 style="text-align: center; margin-top: 80px; ">{{ task.value }}</h2>
+    <P> {{ task.comment }}</P>
     <p>STATUS: <span style="color: rgb(194, 77, 77);">Pending</span></p>
   <div style="text-align: center; ">
     <button class="my-button-delete"  (click)="deleteTask(task.value)">Delete Task</button>
@@ -149,9 +157,10 @@
 
    
 @if(showPendingTasks) {
-  @for (task of statusPending; track task.value) {
+  @for (task of statusPending; track task) {
   
-  <h3 style="text-align: center; margin-top: 80px; ">{{ task.value }}</h3>
+  <h2 style="text-align: center; margin-top: 80px; ">{{ task.value }}</h2>
+  <P> {{ task.comment }}</P>
   <p>STATUS: <span style="color: rgb(194, 77, 77);">Pending</span></p>
   <div style="text-align: center; ">
     <button class="my-button-delete"  (click)="deleteTask(task.value)">Delete Task</button>
@@ -163,9 +172,11 @@
 
 
   @if(showCompletedTasks) {
-    @for (task of statusCompleted; track task.value) {
+    @for (task of statusCompleted; track task) {
     
-    <h3 style="text-align: center; margin-top: 80px; ">{{ task.value }}</h3>
+    <h2 style="text-align: center; margin-top: 80px; ">{{ task.value }}</h2>
+    <p> {{ task.comment }}</p>
+    
     <p>STATUS: <span style="color: rgb(98, 167, 52);">Completed</span></p>
     <div style="text-align: center; ">
       <button class="my-button-delete"  (click)="deleteTask(task.value)">Delete Task</button>
