@@ -132,7 +132,7 @@
 @if(task.status == 'Completed'){
   
   <h2 style="text-align: center; margin-top: 80px; ">{{ task.value }}</h2>
-  <P style="text-align: center; ">TASK DETAILS: {{ task.comment }}</P>
+  <P >{{ task.comment }}</P>
   <p>STATUS: <span style="color: rgb(98, 167, 52);">Completed</span></p>
 <div style="text-align: center; ">
   <button class="my-button-delete"  (click)="deleteTask(task.value)">Delete Task</button>
