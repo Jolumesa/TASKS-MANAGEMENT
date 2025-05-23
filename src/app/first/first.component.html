@@ -49,13 +49,18 @@
         [(ngModel)]="newComment"
       ></textarea>
     </div>
-
-    <button class="btn btn-dark" style="width: 20rem">Submit</button>
-
+@if(!tempMessage) {
+    <button class="btn btn-dark" style="width: 20rem; margin-bottom: 1.5rem;">Submit</button>
+}
+@if(tempMessage){
+  <button class="btn btn-dark" style="width: 20rem;">Submit</button>
+}
     <p class="text text-light">{{ tempMessage }}</p>
   </form>
 
-  @if(tempMessage == ''){ @if(!showAllTasks){
+  @if(tempMessage == ''){
+    <div>
+    @if(!showAllTasks){
   <button
     (click)="showAll()"
     type="button"
@@ -64,7 +69,7 @@
       margin-bottom: 20px;
       width: 8.5rem;
       margin-right: 0.1rem;
-      margin-top: 1.5rem;
+      
     "
   >
     Show all</button
@@ -77,7 +82,7 @@
       margin-bottom: 20px;
       width: 8.5rem;
       margin-right: 0.1rem;
-      margin-top: 1.5rem;
+      
     "
   >
     Show all</button
@@ -91,7 +96,7 @@
       width: 8.5rem;
       margin-left: 0.1rem;
       margin-right: 0.1rem;
-      margin-top: 1.5rem;
+      
     "
   >
     Show pending</button
@@ -105,7 +110,7 @@
       width: 8.5rem;
       margin-left: 0.1rem;
       margin-right: 0.1rem;
-      margin-top: 1.5rem;
+      
     "
   >
     Show pending
@@ -120,7 +125,7 @@
       width: 8.5rem;
       margin-left: 0.1rem;
       margin-right: 0.1rem;
-      margin-top: 1.5rem;
+     
     "
   >
     Show complete</button
@@ -134,7 +139,7 @@
       width: 8.5rem;
       margin-left: 0.1rem;
       margin-right: 0.1rem;
-      margin-top: 1.5rem;
+      
     "
   >
     Show complete
@@ -148,7 +153,7 @@
       margin-bottom: 20px;
       width: 8.5rem;
       margin-left: 0.1rem;
-      margin-top: 1.5rem;
+      
     "
   >
     Delete all
@@ -162,12 +167,15 @@
       margin-bottom: 20px;
       width: 8.5rem;
       margin-left: 0.1rem;
-      margin-top: 1.5rem;
+     
     "
   >
     Delete all
   </button>
-  } } @if(tempMessage){ @if(!showAllTasks){
+
+} </div>}  
+
+@if(tempMessage){ @if(!showAllTasks){
   <button
     (click)="showAll()"
     type="button"
@@ -255,7 +263,11 @@
   >
     Delete all
   </button>
-  } } @if(showAllTasks) { @for (task of statusAll; track task) { @if(task.status
+  } }
+  
+  
+  
+  @if(showAllTasks) { @for (task of statusAll; track task) { @if(task.status
   == 'Completed'){
 
   <h2 style="text-align: center; margin-top: 80px">{{ task.value }}</h2>
