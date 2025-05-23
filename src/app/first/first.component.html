@@ -1,4 +1,11 @@
-<h2 class="header" style="padding: 2.2rem; margin-bottom: 2rem; font-family:c, 'Times New Roman', Times, serif; " >
+<h2
+  class="header"
+  style="
+    padding: 2.2rem;
+    margin-bottom: 2rem;
+    font-family: c, 'Times New Roman', Times, serif;
+  "
+>
   TASKS MANAGEMENT<img
     style="padding-left: 20px"
     src="img/silver-check.jpg"
@@ -7,189 +14,301 @@
   />
 </h2>
 
+<div style="text-align: center">
+  <p style="color: white; font-size: 20px">
+    Total tasks: {{ statusAll.length }}
+  </p>
+  <p style="color: white; font-size: 20px">
+    Pending tasks: {{ statusPending.length }}
+  </p>
+  <p style="color: white; font-size: 20px">
+    Completed tasks: {{ statusCompleted.length }}
+  </p>
 
-
-<div  style="text-align: center">
-  
-  <p style="color: white; font-size: 20px">Total tasks: {{ statusAll.length }}</p>
-  <p style="color: white; font-size: 20px">Pending tasks: {{ statusPending.length }}</p>
-  <p style="color: white; font-size: 20px">Completed tasks: {{ statusCompleted.length }}</p>
-
-  <form (ngSubmit)="onSubmit()" class="add">
-    <label style="margin-top: 40px; "></label>
+  <form (ngSubmit)="onSubmit()" style="margin-bottom: 2rem;
+    text-align: center;">
+    <label style="margin-top: 2.5rem; "></label>
     <input
       name="newTask"
       id="newTask"
       placeholder="Add task name"
       [(ngModel)]="newValue"
-      style="background-color: rgb(255, 255, 255); color: black; margin-bottom: 0.35rem; width: 20rem;"
+      style="
+        background-color: rgb(255, 255, 255);
+        color: black;
+        margin-bottom: 0.35rem;
+        width: 20rem;
+      "
     />
-    
 
+    <div>
+      <textarea
+        id="taskComment"
+        placeholder="Add task details"
+        name="textarea-name"
+        [(ngModel)]="newComment"
+      ></textarea>
+    </div>
 
- <div>
-  <textarea id="taskComment" placeholder="Add task details" name="textarea-name" [(ngModel)]="newComment">frv</textarea>
-</div>
+    <button class="btn btn-dark" style="width: 20rem">Submit</button>
 
-
-    <button class="btn btn-dark" style="width: 20rem;">Submit</button>
-    
-  
-<p class="text text-light">{{ tempMessage }}</p>
-
+    <p class="text text-light">{{ tempMessage }}</p>
   </form>
 
- 
-
- @if(!showAllTasks){
+  @if(tempMessage == ''){ @if(!showAllTasks){
   <button
     (click)="showAll()"
     type="button"
     class="btn btn-dark"
-    style=" margin-bottom: 20px; width: 8.5rem; margin-right: 0.1rem;"
+    style="
+      margin-bottom: 20px;
+      width: 8.5rem;
+      margin-right: 0.1rem;
+      margin-top: 1.5rem;
+    "
   >
-    Show all 
-  </button>}
-  @if(showAllTasks){
-    <button
-      (click)="showAll()"
-      type="button"
-      class="btn btn-light"
-      style=" margin-bottom: 20px; width: 8.5rem; margin-right: 0.1rem;"
-    >
-      Show all 
-    </button>}
-
-
-
-@if(!showPendingTasks){
-<button
-  (click)="showPending()"
-  type="button"
-  class="btn btn-dark"
-  style=" margin-bottom: 20px; width: 8.5rem; margin-left: 0.1rem; margin-right: 0.1rem;"
-  >
-  Show pending
-</button>}
-@if(showPendingTasks){
+    Show all</button
+  >} @if(showAllTasks){
   <button
-  (click)="showPending()"
-  type="button"
-  class="btn btn-light"
-  style="margin-bottom: 20px; width: 8.5rem; margin-left: 0.1rem; margin-right: 0.1rem;"
->
-  Show pending
-</button>
-}
-
-
-@if(!showCompletedTasks){
-<button
-  (click)="showCompleted()"
-  type="button"
-  class="btn btn-dark"
-  style="margin-bottom: 20px; width: 8.5rem; margin-left: 0.1rem; margin-right: 0.1rem;"
->
-  Show complete
-</button>}
-@if(showCompletedTasks) {
+    (click)="showAll()"
+    type="button"
+    class="btn btn-light"
+    style="
+      margin-bottom: 20px;
+      width: 8.5rem;
+      margin-right: 0.1rem;
+      margin-top: 1.5rem;
+    "
+  >
+    Show all</button
+  >} @if(!showPendingTasks){
+  <button
+    (click)="showPending()"
+    type="button"
+    class="btn btn-dark"
+    style="
+      margin-bottom: 20px;
+      width: 8.5rem;
+      margin-left: 0.1rem;
+      margin-right: 0.1rem;
+      margin-top: 1.5rem;
+    "
+  >
+    Show pending</button
+  >} @if(showPendingTasks){
+  <button
+    (click)="showPending()"
+    type="button"
+    class="btn btn-light"
+    style="
+      margin-bottom: 20px;
+      width: 8.5rem;
+      margin-left: 0.1rem;
+      margin-right: 0.1rem;
+      margin-top: 1.5rem;
+    "
+  >
+    Show pending
+  </button>
+  } @if(!showCompletedTasks){
+  <button
+    (click)="showCompleted()"
+    type="button"
+    class="btn btn-dark"
+    style="
+      margin-bottom: 20px;
+      width: 8.5rem;
+      margin-left: 0.1rem;
+      margin-right: 0.1rem;
+      margin-top: 1.5rem;
+    "
+  >
+    Show complete</button
+  >} @if(showCompletedTasks) {
   <button
     (click)="showCompleted()"
     type="button"
     class="btn btn-light"
-    style=" margin-bottom: 20px; width: 8.5rem;margin-left: 0.1rem; margin-right: 0.1rem;"
+    style="
+      margin-bottom: 20px;
+      width: 8.5rem;
+      margin-left: 0.1rem;
+      margin-right: 0.1rem;
+      margin-top: 1.5rem;
+    "
   >
     Show complete
   </button>
-}
-
-
-@if(!deleteAll) {
-<button
-  (click)="deleteAllTasks()"
-  type="button"
-  class="btn btn-dark"
-  style=" margin-bottom: 20px; width: 8.5rem; margin-left: 0.1rem;"
->
-  Delete all
-</button>
-}
-@if(deleteAll) {
+  } @if(!deleteAll) {
+  <button
+    (click)="deleteAllTasks()"
+    type="button"
+    class="btn btn-dark"
+    style="
+      margin-bottom: 20px;
+      width: 8.5rem;
+      margin-left: 0.1rem;
+      margin-top: 1.5rem;
+    "
+  >
+    Delete all
+  </button>
+  } @if(deleteAll) {
   <button
     (click)="deleteAllTasks()"
     type="button"
     class="btn btn-light"
-    style=" margin-bottom: 20px; width: 8.5rem; margin-left: 0.1rem; "
+    style="
+      margin-bottom: 20px;
+      width: 8.5rem;
+      margin-left: 0.1rem;
+      margin-top: 1.5rem;
+    "
   >
     Delete all
   </button>
-  }
+  } } @if(tempMessage){ @if(!showAllTasks){
+  <button
+    (click)="showAll()"
+    type="button"
+    class="btn btn-dark"
+    style="margin-bottom: 20px; width: 8.5rem; margin-right: 0.1rem"
+  >
+    Show all</button
+  >} @if(showAllTasks){
+  <button
+    (click)="showAll()"
+    type="button"
+    class="btn btn-light"
+    style="margin-bottom: 20px; width: 8.5rem; margin-right: 0.1rem"
+  >
+    Show all</button
+  >} @if(!showPendingTasks){
+  <button
+    (click)="showPending()"
+    type="button"
+    class="btn btn-dark"
+    style="
+      margin-bottom: 20px;
+      width: 8.5rem;
+      margin-left: 0.1rem;
+      margin-right: 0.1rem;
+    "
+  >
+    Show pending</button
+  >} @if(showPendingTasks){
+  <button
+    (click)="showPending()"
+    type="button"
+    class="btn btn-light"
+    style="
+      margin-bottom: 20px;
+      width: 8.5rem;
+      margin-left: 0.1rem;
+      margin-right: 0.1rem;
+    "
+  >
+    Show pending
+  </button>
+  } @if(!showCompletedTasks){
+  <button
+    (click)="showCompleted()"
+    type="button"
+    class="btn btn-dark"
+    style="
+      margin-bottom: 20px;
+      width: 8.5rem;
+      margin-left: 0.1rem;
+      margin-right: 0.1rem;
+    "
+  >
+    Show complete</button
+  >} @if(showCompletedTasks) {
+  <button
+    (click)="showCompleted()"
+    type="button"
+    class="btn btn-light"
+    style="
+      margin-bottom: 20px;
+      width: 8.5rem;
+      margin-left: 0.1rem;
+      margin-right: 0.1rem;
+    "
+  >
+    Show complete
+  </button>
+  } @if(!deleteAll) {
+  <button
+    (click)="deleteAllTasks()"
+    type="button"
+    class="btn btn-dark"
+    style="margin-bottom: 20px; width: 8.5rem; margin-left: 0.1rem"
+  >
+    Delete all
+  </button>
+  } @if(deleteAll) {
+  <button
+    (click)="deleteAllTasks()"
+    type="button"
+    class="btn btn-light"
+    style="margin-bottom: 20px; width: 8.5rem; margin-left: 0.1rem"
+  >
+    Delete all
+  </button>
+  } } @if(showAllTasks) { @for (task of statusAll; track task) { @if(task.status
+  == 'Completed'){
 
-
-@if(showAllTasks) {
-@for (task of statusAll; track task) {
-
-
-@if(task.status == 'Completed'){
-  
-  <h2 style="text-align: center; margin-top: 80px; ">{{ task.value }}</h2>
-  <P >{{ task.comment }}</P>
-  <p>STATUS: <span style="color: rgb(98, 167, 52);">Completed</span></p>
-<div style="text-align: center; ">
-  <button class="my-button-delete"  (click)="deleteTask(task.value)">Delete Task</button>
-  <button class="my-button-change-status"  (click)="markPending(task.value)">Change status</button>
-</div>
-}
-
-
-  @if(task.status == 'Pending'){
-    <h2 style="text-align: center; margin-top: 80px; ">{{ task.value }}</h2>
-    <P> {{ task.comment }}</P>
-    <p>STATUS: <span style="color: rgb(194, 77, 77);">Pending</span></p>
-  <div style="text-align: center; ">
-    <button class="my-button-delete"  (click)="deleteTask(task.value)">Delete Task</button>
-    <button class="my-button-change-status"  (click)="markCompleted(task.value)">Change status</button>
+  <h2 style="text-align: center; margin-top: 80px">{{ task.value }}</h2>
+  <P>{{ task.comment }}</P>
+  <p>STATUS: <span style="color: rgb(98, 167, 52)">Completed</span></p>
+  <div style="text-align: center">
+    <button class="my-button-delete" (click)="deleteTask(task.value)">
+      Delete Task
+    </button>
+    <button class="my-button-change-status" (click)="markPending(task.value)">
+      Change status
+    </button>
   </div>
-  }
-}
-  }
-
-      
-
-   
-@if(showPendingTasks) {
-  @for (task of statusPending; track task) {
-  
-  <h2 style="text-align: center; margin-top: 80px; ">{{ task.value }}</h2>
+  } @if(task.status == 'Pending'){
+  <h2 style="text-align: center; margin-top: 80px">{{ task.value }}</h2>
   <P> {{ task.comment }}</P>
-  <p>STATUS: <span style="color: rgb(194, 77, 77);">Pending</span></p>
-  <div style="text-align: center; ">
-    <button class="my-button-delete"  (click)="deleteTask(task.value)">Delete Task</button>
-  
-    <button class="my-button-change-status"  (click)="markCompleted(task.value)">Change status</button>
-  </div>}
-  }
+  <p>STATUS: <span style="color: rgb(194, 77, 77)">Pending</span></p>
+  <div style="text-align: center">
+    <button class="my-button-delete" (click)="deleteTask(task.value)">
+      Delete Task
+    </button>
+    <button class="my-button-change-status" (click)="markCompleted(task.value)">
+      Change status
+    </button>
+  </div>
+  } } } @if(showPendingTasks) { @for (task of statusPending; track task) {
 
+  <h2 style="text-align: center; margin-top: 80px">{{ task.value }}</h2>
+  <P> {{ task.comment }}</P>
+  <p>STATUS: <span style="color: rgb(194, 77, 77)">Pending</span></p>
+  <div style="text-align: center">
+    <button class="my-button-delete" (click)="deleteTask(task.value)">
+      Delete Task
+    </button>
 
+    <button class="my-button-change-status" (click)="markCompleted(task.value)">
+      Change status
+    </button>
+  </div>
+  } } @if(showCompletedTasks) { @for (task of statusCompleted; track task) {
 
-  @if(showCompletedTasks) {
-    @for (task of statusCompleted; track task) {
-    
-    <h2 style="text-align: center; margin-top: 80px; ">{{ task.value }}</h2>
-    <p> {{ task.comment }}</p>
-    
-    <p>STATUS: <span style="color: rgb(98, 167, 52);">Completed</span></p>
-    <div style="text-align: center; ">
-      <button class="my-button-delete"  (click)="deleteTask(task.value)">Delete Task</button>
-    
-      
-      <button class="my-button-change-status"  (click)="markPending(task.value)">Change status</button>
-      
-    </div>}
-    }
+  <h2 style="text-align: center; margin-top: 80px">{{ task.value }}</h2>
+  <p>{{ task.comment }}</p>
 
+  <p>STATUS: <span style="color: rgb(98, 167, 52)">Completed</span></p>
+  <div style="text-align: center">
+    <button class="my-button-delete" (click)="deleteTask(task.value)">
+      Delete Task
+    </button>
 
-
-    
-   
-    
+    <button class="my-button-change-status" (click)="markPending(task.value)">
+      Change status
+    </button>
+  </div>
+  } }
+</div>
