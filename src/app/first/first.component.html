@@ -30,12 +30,11 @@
  <div>
   <textarea id="taskComment" placeholder="Add task details" name="textarea-name" [(ngModel)]="newComment">frv</textarea>
 </div>
-@if(!submit){
+
+
     <button class="btn btn-dark" style="width: 20rem;">Submit</button>
-    }
-    @if(submit){
-    <button class="btn btn-light" >Submit</button>
-    }
+    
+  
 <p class="text text-light">{{ tempMessage }}</p>
 
   </form>

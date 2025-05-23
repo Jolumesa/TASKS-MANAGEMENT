@@ -23,7 +23,7 @@ export class FirstComponent implements OnInit {
   taskCompleted = false;
   showAllTasks = false;
   deleteAll = false
-  submit = false;
+ 
   newValue = signal('');
   newComment = signal('');
   tempMessage = '';
@@ -94,9 +94,7 @@ ngOnInit() {
       }, 3000);
       return
     }
-    this.submit = true;
-    setTimeout(() => {
-      this.submit = false;}, 200);
+   
 
     if (this.allStorage.includes(this.newValue())) {
      
